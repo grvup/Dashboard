@@ -15,21 +15,36 @@ const Main = styled.div`
   padding: 20px;
 `;
 
-const Dashboard = () => (
-  <Main>
-    <UserCard name="Darpan Mehta" role="Student" />
-    <DesignationDropdown
-      designations={['Student', 'Admin', 'Faculty']}
-      onChange={(e) => console.log(e.target.value)}
-    />
-    <div style={{ display: 'flex', flexWrap: 'wrap' }}>
-      <ModuleTile name="Attendance" />
-      <ModuleTile name="Grades" />
-      <ModuleTile name="Assignments" />
-      {/* Add more ModuleTile components as needed */}
-    </div>
-  </Main>
-);
+// Define modules for each role
+const modulesByDesignation = {
+  Student: ['Attendance', 'Grades', 'Assignments'],
+  Admin: ['User Management', 'Reports', 'Settings'],
+  Faculty: ['Course Materials', 'Student Feedback', 'Timetable'],
+};
+
+const Dashboard = () => {
+  // State to track selected role
+  const [designation, setDesignation] = useState('Student');
+
+  const handleDesignationChange = (e) => {
+    setDesignation(e.target.value);
+  };
+
+  return (
+    <Main>
+      <UserCard name="Darpan Mehta" role={designation} />
+      <DesignationDropdown
+        designations={['Student', 'Admin', 'Faculty']}
+        onChange={handleDesignationChange}
+      />
+      <div style={{ display: 'flex', flexWrap: 'wrap' }}>
+        {modulesByDesignation[designation].map((module) => (
+          <ModuleTile key={module} name={module} />
+        ))}
+      </div>
+    </Main>
+  );
+};
 
 const Profile = () => <div>Profile Page</div>;
 const Settings = () => <div>Settings Page</div>;
