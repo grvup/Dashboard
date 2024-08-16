@@ -1,5 +1,5 @@
-import React from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'; // Updated imports
+import React, { useState } from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import styled from 'styled-components';
 import UserCard from './components/UserCard';
 import Navigation from './components/Navigation';
@@ -15,21 +15,34 @@ const Main = styled.div`
   padding: 20px;
 `;
 
-const Dashboard = () => (
-  <Main>
-    <UserCard name="Darpan Mehta" role="Student" />
-    <DesignationDropdown
-      designations={['Student', 'Admin', 'Faculty']}
-      onChange={(e) => console.log(e.target.value)}
-    />
-    <div style={{ display: 'flex', flexWrap: 'wrap' }}>
-      <ModuleTile name="Attendance" />
-      <ModuleTile name="Grades" />
-      <ModuleTile name="Assignments" />
-      {/* Add more ModuleTile components as needed */}
-    </div>
-  </Main>
-);
+const modulesByDesignation = {
+  Student: ['Attendance', 'Grades', 'Assignments'],
+  Admin: ['User Management', 'Reports', 'Settings'],
+  Faculty: ['Course Materials', 'Student Feedback', 'Timetable'],
+};
+
+const Dashboard = () => {
+  const [designation, setDesignation] = useState('Student'); // Initialize with default designation
+
+  const handleDesignationChange = (e) => {
+    setDesignation(e.target.value);
+  };
+
+  return (
+    <Main>
+      <UserCard name="Darpan Mehta" role={designation} />
+      <DesignationDropdown
+        designations={['Student', 'Admin', 'Faculty']}
+        onChange={handleDesignationChange}
+      />
+      <div style={{ display: 'flex', flexWrap: 'wrap' }}>
+        {modulesByDesignation[designation].map((module) => (
+          <ModuleTile key={module} name={module} />
+        ))}
+      </div>
+    </Main>
+  );
+};
 
 const Profile = () => <div>Profile Page</div>;
 const Settings = () => <div>Settings Page</div>;
@@ -38,8 +51,8 @@ const App = () => (
   <Router>
     <Container>
       <Navigation />
-      <Routes> {/* Updated from Switch to Routes */}
-        <Route path="/" element={<Dashboard />} /> {/* Updated to use element instead of component */}
+      <Routes>
+        <Route path="/" element={<Dashboard />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/settings" element={<Settings />} />
       </Routes>
