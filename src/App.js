@@ -1,5 +1,5 @@
-import React from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'; // Updated imports
+import React, { useState } from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import styled from 'styled-components';
 import UserCard from './components/UserCard';
 import Navigation from './components/Navigation';
@@ -17,7 +17,7 @@ const Main = styled.div`
 
 const Dashboard = () => (
   <Main>
-    <UserCard name=" Piyush Bihani" role="Student" />
+    <UserCard name="Darpan Mehta" role="Student" />
     <DesignationDropdown
       designations={['Student', 'Admin', 'Faculty']}
       onChange={(e) => console.log(e.target.value)}
@@ -38,8 +38,8 @@ const App = () => (
   <Router>
     <Container>
       <Navigation />
-      <Routes> {/* Updated from Switch to Routes */}
-        <Route path="/" element={<Dashboard />} /> {/* Updated to use element instead of component */}
+      <Routes>
+        <Route path="/" element={<Dashboard />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/settings" element={<Settings />} />
       </Routes>

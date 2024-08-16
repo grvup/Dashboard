@@ -52,7 +52,7 @@ const UserCard = ({ name, role }) => (
     <Avatar>{name.charAt(0)}</Avatar>
     <UserInfo>
       <strong>{name}</strong>
-      <span>{role}</span>
+      <span>{role}</span> {/* Display the selected designation */}
     </UserInfo>
   </Card>
 );
