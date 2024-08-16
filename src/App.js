@@ -17,7 +17,7 @@ const Main = styled.div`
 
 const Dashboard = () => (
   <Main>
-    <UserCard name="Darpan Mehta" role="Student" />
+    <UserCard name=" Piyush Bihani" role="Student" />
     <DesignationDropdown
       designations={['Student', 'Admin', 'Faculty']}
       onChange={(e) => console.log(e.target.value)}
