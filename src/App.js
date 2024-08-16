@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import styled from 'styled-components';
-import UserCard from './components/UserCard';
-import Navigation from './components/Navigation';
-import ModuleTile from './components/ModuleTile';
+import UserCard from './components/UserCard/UserCard';
+import Navigation from './components/Navigation/Navigation';
+import ModuleTile from './components/ModuleTile/ModuleTile';
 import DesignationDropdown from './components/DesignationDropdown';
 
 const Container = styled.div`
