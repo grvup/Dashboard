@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import styled from 'styled-components';
-import UserCard from './components/UserCard';
-import Navigation from './components/Navigation';
-import ModuleTile from './components/ModuleTile';
+import UserCard from './components/UserCard/UserCard';
+import Navigation from './components/Navigation/Navigation';
+import ModuleTile from './components/ModuleTile/ModuleTile';
 import DesignationDropdown from './components/DesignationDropdown';
 
 const Container = styled.div`
@@ -15,6 +15,7 @@ const Main = styled.div`
   padding: 20px;
 `;
 
+// Define modules for each role
 const modulesByDesignation = {
   Student: ['Attendance', 'Grades', 'Assignments'],
   Admin: ['User Management', 'Reports', 'Settings'],
@@ -22,7 +23,8 @@ const modulesByDesignation = {
 };
 
 const Dashboard = () => {
-  const [designation, setDesignation] = useState('Student'); // Initialize with default designation
+  // State to track selected role
+  const [designation, setDesignation] = useState('Student');
 
   const handleDesignationChange = (e) => {
     setDesignation(e.target.value);
