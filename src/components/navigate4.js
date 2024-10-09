@@ -8,7 +8,6 @@ const Nav = styled.nav`
   background: #ffffff;
   padding: 20px;
   height: 100vh;
-  border-right: 1px solid #e0e0e0;
 `;
 
 const NavItem = styled(NavLink)`
