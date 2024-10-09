@@ -1,33 +1,26 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
-import styled from 'styled-components';
+import '../styles/Navigation.css';
 
-const Nav = styled.nav`
-  display: flex;
-  flex-direction: column;
-  background: #f8f9fa;
-  padding: 20px;
-  height: 100vh;
-`;
+const Navigation = () => {
+  const [isOpen, setIsOpen] = useState(true);
 
-const NavItem = styled(NavLink)`
-  margin-bottom: 10px;
-  text-decoration: none;
-  color: #333;
-  padding: 10px;
-  border-radius: 4px;
-  &.active {
-    background: #007bff;
-    color: #fff;
-  }
-`;
+  const toggleNav = () => {
+    setIsOpen(!isOpen);
+  };
 
-const Navigation = () => (
-  <Nav>
-    <NavItem to="/" exact>Home</NavItem>
-    <NavItem to="/profile">Profile</NavItem>
-    <NavItem to="/settings">Settings</NavItem>
-  </Nav>
-);
+  return (
+    <>
+      <button className="toggle-button" onClick={toggleNav}>
+        {isOpen ? '×' : '☰'}
+      </button>
+      <nav className={`nav ${isOpen ? '' : 'hidden'}`}>
+        <NavLink to="/" exact className="nav-item" activeClassName="active">Home</NavLink>
+        <NavLink to="/profile" className="nav-item" activeClassName="active">Profile</NavLink>
+        <NavLink to="/settings" className="nav-item" activeClassName="active">Settings</NavLink>
+      </nav>
+    </>
+  );
+};
 
 export default Navigation;
